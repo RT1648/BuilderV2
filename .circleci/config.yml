@@ -1,0 +1,23 @@
+version: 2.1
+
+jobs:
+  setup:
+    docker:
+      - image: ghcr.io/sushrut1101/docker:arch
+    resource_class: large
+    steps:
+      - checkout
+      - run:
+          name: "Syncing Sources"
+          command: source scripts/sync.sh
+      - run:
+          name: "Initializing Build System"
+          command: source scripts/build.sh
+      - run:
+          name: "Uploading Output"
+          command: source scripts/upload.sh
+workflows:
+  setup:
+    jobs:
+      - setup:
+          context: org-global
