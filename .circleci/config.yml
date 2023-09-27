@@ -2,8 +2,8 @@ version: 2.1
 
 jobs:
   setup:
-    docker:
-      - image: ghcr.io/sushrut1101/docker:arch
+    machine:
+      image: ubuntu-2004:current
     resource_class: large
     steps:
       - checkout
